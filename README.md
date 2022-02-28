@@ -1,8 +1,8 @@
 # Abhi2RisUm
-This Repository Is for our Minor Project 
-<h1>Project</h1>
-<h2>Our web application will use machine learning model and will predict covid-19 disease based on your X-ray report</h2>
-<h3> Team Members</h3>
+Minor Project 
+<h2>Machine Learning Model Inside covid19/main/TrainedModel.h5</h2>
+<h2>Training data inside data folder</h2>
+<img src='frontpage.JPG' width=800px height=400px><img src='positiveex.JPG' width=800px height=400px> <img src='negativeex.JPG' width=800px height=400px>
 <ul>
   <li>Abhishek Dixit</li>
   <li>Abhishek Mishra</li>
