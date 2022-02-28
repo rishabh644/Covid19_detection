@@ -19,20 +19,33 @@ def cal(request):
         instance=models.ImageModel()
         instance.image=picture
         instance.save()
-        mdl=load_model('TrainedModel.h5')
+        username=request.POST.get('name')
+        dob=request.POST.get('dob')
+        address=request.POST.get('address')
+        print('Name ',username)
+        print('Dob ',dob)
+        context={'name':username,'dob':dob,'address':address}
+        mdl=load_model('C:/Users/hp/OneDrive/Desktop/minorproject/covid19/main/TrainedModel.h5')
         img_width,img_height=224,224
         mdl.compile(loss='binary_crossentropy',optimizer='rmsprop',metrics=['accuracy'])
-        img=image.load_img('check.jpeg',target_size=(img_width,img_height))
+        ptt='C:/Users/hp/OneDrive/Desktop/minorproject/covid19/media/'
+        ptt+=instance.fx()
+        img=image.load_img(ptt,target_size=(img_width,img_height))
         x=image.img_to_array(img)
         x=np.expand_dims(x,axis=0)
         images=np.vstack([x])
-        classes=mdl.predict_classes(images,batch_size=10)
-        print(classes)
+        predict_x=(mdl.predict(images) > 0.5).astype("int32")
+        if(predict_x[0][0]==0):
+                return HttpResponse(template.render(context,request))
+        else:
+                return HttpResponse(template1.render(context,request))
+        
+        
         
         
         
         
 
         
-        return HttpResponse(template1.render(context,request))
+       
 
